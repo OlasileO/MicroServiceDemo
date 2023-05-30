@@ -6,3 +6,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+
+  productweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+ 

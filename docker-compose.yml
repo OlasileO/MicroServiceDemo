@@ -5,7 +5,7 @@ networks:
 
 services:
   customerdb:
-    container_name: customerdb
+    container_name: customer-db
     image: mcr.microsoft.com/mssql/server:2022-latest
     ports:
        - 8001:1433
@@ -28,3 +28,30 @@ services:
      - DB_HOST=customerdb
      - DB_NAME=customer
      - DB_SA_PASSWORD=Pasword@1234&
+ 
+  productdb:
+    container_name: product-db
+    image: mysql:8.0.33-oracle
+    ports:
+     - 8007:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=Pasword@1234&
+    networks:
+     - backend
+
+  productweb:
+    container_name: product-webapi
+    image: ${DOCKER_REGISTRY-}productweb
+    build:
+      context: .
+      dockerfile: ProductWeb/Dockerfile
+    ports:
+     - 8006:80
+    environment:
+     - DB_HOST=productdb
+     - DB_NAME=product
+     - DB_ROOT_PASSWORD=Pasword@1234&
+    networks:
+     - backend
+
+
