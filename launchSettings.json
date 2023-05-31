@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "customerweb": "StartDebugging",
-        "productweb": "StartDebugging"
+        "productweb": "StartDebugging",
+        "orderweb": "StartDebugging"
       }
     }
   }

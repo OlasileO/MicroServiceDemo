@@ -11,6 +11,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductWeb", "ProductWeb\ProductWeb.csproj", "{4B293412-9201-43B9-88F5-0C7A26BDC768}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderWeb", "OrderWeb\OrderWeb.csproj", "{D55D03DF-912F-4CDE-B143-FAD8AF75B973}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{4B293412-9201-43B9-88F5-0C7A26BDC768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B293412-9201-43B9-88F5-0C7A26BDC768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B293412-9201-43B9-88F5-0C7A26BDC768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55D03DF-912F-4CDE-B143-FAD8AF75B973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55D03DF-912F-4CDE-B143-FAD8AF75B973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55D03DF-912F-4CDE-B143-FAD8AF75B973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55D03DF-912F-4CDE-B143-FAD8AF75B973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0646A0E9-C386-4D1B-BA18-04B64E44BFBB} = {9962A78F-67B5-491A-BC7F-5D760D599116}
 		{4B293412-9201-43B9-88F5-0C7A26BDC768} = {9962A78F-67B5-491A-BC7F-5D760D599116}
+		{D55D03DF-912F-4CDE-B143-FAD8AF75B973} = {9962A78F-67B5-491A-BC7F-5D760D599116}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {843F96CA-E79D-4F7B-8838-0AFA2B88A3AD}
