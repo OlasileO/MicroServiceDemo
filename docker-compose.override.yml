@@ -14,4 +14,11 @@ services:
       - "80"
 
 
- 
+
+
+  orderweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

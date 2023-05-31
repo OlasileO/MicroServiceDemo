@@ -54,4 +54,23 @@ services:
     networks:
      - backend
 
-
+  orderdb:
+    container_name: order-db
+    image: mongo
+    ports:
+     - 8008:27017
+    networks:
+     - backend
+  orderweb:
+    container_name: order-webapi
+    image: ${DOCKER_REGISTRY-}orderweb
+    build:
+      context: .
+      dockerfile: OrderWeb/Dockerfile
+    ports:
+      - 18009:80
+    networks:
+     - backend
+    environment:
+     - DB_HOST=orderdb
+     - DB_NAME=order
