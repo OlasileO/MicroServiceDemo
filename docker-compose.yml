@@ -3,6 +3,10 @@ version: '3.4'
 networks:
   backend:
 
+volumes:
+  mongo-data:
+  mysql-data:
+
 services:
   customerdb:
     container_name: customer-db
@@ -14,20 +18,23 @@ services:
      - SA_PASSWORD=Pasword@1234&
     networks:
       - backend
+    volumes:
+      - ./data:/var/opt/mssql/data
   customerweb:
     container_name: customer-api
     image: ${DOCKER_REGISTRY-}customerweb
     build:
       context: .
       dockerfile: CustomerWeb/Dockerfile
-    ports:
-      - 8004:80
+    #ports:
+    #  - 8004:80
     networks:
       - backend
     environment:
      - DB_HOST=customerdb
      - DB_NAME=customer
      - DB_SA_PASSWORD=Pasword@1234&
+    
  
   productdb:
     container_name: product-db
@@ -38,6 +45,8 @@ services:
      - MYSQL_ROOT_PASSWORD=Pasword@1234&
     networks:
      - backend
+    volumes:
+      - mysql-data:/var/lib/mysql
 
   productweb:
     container_name: product-webapi
@@ -45,14 +54,16 @@ services:
     build:
       context: .
       dockerfile: ProductWeb/Dockerfile
-    ports:
-     - 8006:80
+    #ports:
+    # - 8006:80
     environment:
      - DB_HOST=productdb
      - DB_NAME=product
      - DB_ROOT_PASSWORD=Pasword@1234&
     networks:
      - backend
+     
+
 
   orderdb:
     container_name: order-db
@@ -61,16 +72,30 @@ services:
      - 8008:27017
     networks:
      - backend
+    volumes:
+     - mongo-data:/data/db
   orderweb:
     container_name: order-webapi
     image: ${DOCKER_REGISTRY-}orderweb
     build:
       context: .
       dockerfile: OrderWeb/Dockerfile
-    ports:
-      - 18009:80
+    ##ports:
+    ##  - 18009:80
     networks:
      - backend
     environment:
      - DB_HOST=orderdb
      - DB_NAME=order
+
+  apigateway:
+    container_name: Api-Gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+     - 8009:80
+    networks:
+     - backend
+
