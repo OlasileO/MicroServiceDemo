@@ -1,4 +1,5 @@
 ﻿using CustomerWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ namespace CustomerWeb.Controllers
 
         // GET: api/<CustomerController>
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetCustomer()
         {
           var customer = await _customerContext.Customers.ToListAsync();
@@ -27,6 +29,7 @@ namespace CustomerWeb.Controllers
 
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetById(int id)
         {
             var customer = await _customerContext.Customers.FindAsync(id);

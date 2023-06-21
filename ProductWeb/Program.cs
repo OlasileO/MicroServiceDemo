@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProductWeb.Model;
+using JwtAuthenticationManger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ var dbpassword = Environment.GetEnvironmentVariable("DB_ROOT_PASSWORD");
 
 var connectionstring = $"server={dbhost},port=3306;database={dbname};user=root;password={dbpassword}";
 builder.Services.AddDbContext<ProductContext>(o => o.UseMySQL(connectionstring));
-
+builder.Services.AddCustomJwtAuthExtension();
 // Add services to the container.
 
 builder.Services.AddControllers();

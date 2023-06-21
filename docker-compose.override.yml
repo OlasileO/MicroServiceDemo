@@ -29,3 +29,10 @@ services:
     ports:
       - "80"
 
+
+  authenticationweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

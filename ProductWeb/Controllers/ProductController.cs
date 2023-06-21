@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using ProductWeb.Model;
@@ -20,6 +21,7 @@ namespace ProductWeb.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllProduct()
         {
             var product =await _context.Products.ToListAsync();
@@ -28,6 +30,7 @@ namespace ProductWeb.Controllers
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetById(int id)
         {
             var product = _context.Products.FindAsync(id);

@@ -99,3 +99,12 @@ services:
     networks:
      - backend
 
+  authenticationweb:
+    container_name: authentiaction-api
+    image: ${DOCKER_REGISTRY-}authenticationweb
+    build:
+      context: .
+      dockerfile: AuthenticationWeb/Dockerfile
+    networks:
+    - backend
+

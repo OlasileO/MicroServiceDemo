@@ -1,5 +1,19 @@
 {
   "Routes": [
+    //Authentication api
+    {
+      "UpstreamPathTemplate": "/api/AuthManger",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authenticationweb",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/AuthManger"
+    },
+    //
     {
       "UpstreamPathTemplate": "/api/Customer",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
@@ -38,7 +52,13 @@
 
         }
       ],
-      "DownstreamPathTemplate": "/api/Product"
+      "DownstreamPathTemplate": "/api/Product",
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 60,
+        "Limit": 5
+      }
     },
     {
       "UpstreamPathTemplate": "/api/Product/{Id}",
@@ -65,11 +85,18 @@
 
         }
       ],
-      "DownstreamPathTemplate": "/api/Order"
+      "DownstreamPathTemplate": "/api/Order",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
     },
     {
       "UpstreamPathTemplate": "/api/Order/{Id}",
-      "UpstreamHttpMethod": [ "Get","Delete" ],
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

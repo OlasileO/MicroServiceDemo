@@ -1,3 +1,4 @@
+using JwtAuthenticationManger;
 using CustomerWeb.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ var dbName = Environment.GetEnvironmentVariable("DB_NAME");
 var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD"); 
 var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbPassword};Encrypt=false";
 builder.Services.AddDbContext<CustomerContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddCustomJwtAuthExtension();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -26,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

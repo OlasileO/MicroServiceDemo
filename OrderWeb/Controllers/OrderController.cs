@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using OrderWeb.Model;
 
@@ -26,6 +27,7 @@ namespace OrderWeb.Controllers
 
         // GET: api/<OrderController>
         [HttpGet]
+        
         public async Task<IActionResult> GetAllOrders()
         {
             var order =  await _orderCollection.Find(_ => true).ToListAsync();
@@ -34,6 +36,7 @@ namespace OrderWeb.Controllers
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
+       
         public async Task<IActionResult> GetById(string id)
         {
             var order = await _orderCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
